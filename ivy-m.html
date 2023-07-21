@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Love You</title>
+    <style>
+      body {
+        overflow-y: scroll;
+        background-color: black;
+        font-family: Arial, sans-serif;
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        height: 300vh;
+      }
+    .top {
+        height: 30%;
+        margin-bottom: 20px;
+        background-color: rgb(0, 0, 0);
+        display: flex; /* Add display flex to align items horizontally */
+        justify-content: space-between; /* Add space between left and right sides */
+        align-items: center; /* Center items vertically */
+        flex-direction: row; /* Arrange items in a row */
+        padding: 20px; /* Add padding to create some space */
+    }
+    .middle {
+            height: 40%;
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, 
+                #8E44AD, 
+                #9B59B6, 
+                #E91E63, 
+                #EC407A, 
+                #FF4081, /* Added a lighter pink */
+                #FF80AB, /* Added a light pink */
+                #3F51B5, 
+                #5C6BC0, 
+                #7986CB /* Added a lighter blue */
+            );
+            background-size: 800% 800%; /* Adjust the size of the gradient */
+            animation: gradientAnimation 25s ease infinite; /* Set the animation for the gradient */
+        }
+
+        @keyframes gradientAnimation {
+            0%, 100% { background-position: 0 0; }
+            50% { background-position: 100% 100%; }
+        }
+        .bottom {
+        height: 30%;
+        background-color: rgb(0, 0, 0);
+        color: white;
+        line-height: 30px;
+        position: relative;
+      }
+
+      /* Add the new CSS for the "left-side" and "right-side" */
+      .left-side, .right-side {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: flex-start; /* Align the text towards the left */
+      }
+
+      .love-text, .sub-text {
+        font-size: 10rem; /* Increase font size */
+        font-weight: bold;
+        color: #00aaff; /* Lightened blue color */
+        text-transform: capitalize; /* Capitalize first letter of each word */
+        text-shadow: 2px 2px 6px #ff69b4; /* More intense baby pink text shadow */
+        margin-bottom: -20px; /* Decrease vertical spacing between lines */
+      }
+
+      /* Add styles for the right-side text */
+      .right-side {
+        text-align: right; /* Align text to the right */
+        margin-right: -22px;
+      }
+      .left-side {
+          margin-left: -22px;
+      }
+      .right-aligned-text {
+          font-size: 0.75rem; /* Adjust font size as needed */
+          margin-top: 20px; /* Add some vertical spacing between the previous text and this new text */
+          line-height: 14px;
+          color: white;
+          word-spacing: 3px;
+      }
+
+      .right-side .love-text, .right-side .sub-text {
+        text-shadow: 2px 2px 6px #ff0000; /* Red text shadow for the right side */
+      }
+      .dashed-line {
+          width: 100%;
+          height: 20px;
+          border-bottom: 2px dashed #fff; /* Increase the size of the dashes */
+          position: absolute;
+          bottom: 30px; /* Shift the dashed line slightly above */
+          left: 0;
+          z-index: -1;
+      }
+    .slide {
+        display: none;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    .slide .image-wrapper {
+            /* Position the first wrapper relative to its parent .slide */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /* Add rounded corners for the first border (frame) */
+            border: 10px solid rgba(255, 255, 255, 0.7); /* Adjust the frame color and width as needed */
+            border-radius: 30px; /* Adjust the frame's rounded corners */
+            /* Size the first wrapper to be slightly larger than the image */
+            padding: 20px; /* Increase padding to make the frame bigger than the image */
+        }
+
+        .slide .image-wrapper-2 {
+            /* Position the second wrapper relative to the first wrapper */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /* Add rounded corners for the second border */
+            border: 20px solid rgba(255, 255, 255, 0.7); /* Adjust the color and width as needed */
+            border-radius: 40px; /* Adjust the rounded corners for the second border */
+            /* Size the second wrapper to be slightly larger than the first wrapper */
+            padding: 25px; /* Increase padding to make the second border bigger than the first wrapper */
+        }
+
+        .slide img {
+            /* Your existing CSS for image styling */
+            max-width: 900px;
+            max-height: 900px;
+            /* To center the images horizontally and vertically, use the following three lines */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            /* Add rounded corners for the image itself */
+            border-radius: 20px; /* Adjust the value to control the image's rounded corners */
+        }
+    .slide-1 img {
+        /* Decrease the maximum width and height to your desired size */
+        max-width: 1200px;
+        max-height: 1200px;
+        /* To center the images horizontally and vertically, use the following two lines */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .slide-2 img {
+        /* Decrease the maximum width and height to your desired size */
+        max-width: 700px;
+        max-height: 800px;
+        height: 700px;
+        /* To center the images horizontally and vertically, use the following two lines */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .custom-prompt {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            display: none;
+        }
+
+        .custom-prompt-content {
+            background-color: #32deab;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            color: #00aaff; /* Light blue text color */
+            width: 26%;
+            opacity: 0.9;
+        }
+        .prompt-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(18, 122, 149, 0.9);
+            backdrop-filter: blur(20px);
+            z-index: 9998; /* Set a lower z-index to display below other elements */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .custom-prompt-content p {
+            color: #fefefe; /* Baby pink text color */
+            font-size: 24px; /* Increase font size */
+        }
+
+        .custom-prompt-content button {
+            margin-top: 10px;
+            background-color: #53f641; /* Set pink background color for the button */
+            color: #fff; /* Set text color to white */
+            font-size: 18px; /* Increase button text size */
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .button-container {
+            display: flex;
+            flex-direction: column; /* Arrange buttons in a column layout */
+            align-items: center; /* Center align the buttons horizontally */
+        }
+
+        /* Center align the prompt */
+        @media (max-width: 768px) {
+            .custom-prompt-content {
+                max-width: 80%;
+            }
+        }
+        .bottom .line {
+            width: 100%;
+            height: 2px; /* Set the height to control the line thickness */
+            border-top: 2px dashed #fff; /* Set the dashed line properties */
+            position: absolute;
+        }
+
+        /* Position the dashed line above the text */
+        .bottom .line:first-child {
+            top: 1px; /* Adjust the distance from the top of the bottom div */
+            left: 0;
+        }
+
+        /* Position the dashed line below the finger heart emoji */
+        .bottom .line:last-child {
+            bottom: -90px; /* Adjust the distance from the bottom of the bottom div */
+            left: 0;
+        }
+        .top .line {
+            width: 100%;
+            height: 2px; /* Set the height to control the line thickness */
+            border-bottom: 2px dashed #fff; /* Set the dashed line properties */
+            position: absolute;
+        }
+
+        /* Position the dashed line above all the text in the top div */
+        .top .line {
+            top: 5px; /* Adjust the distance from the top of the top div */
+            left: 0;
+        }
+  </style>
+</head>
+<body>
+<div class="prompt-container">
+    <div class="custom-prompt" id="prompt">
+        <div class="custom-prompt-content">
+            <p>Open Arms???</p>
+            <div class="button-container">
+                <button id="play-btn">Yes!!</button>
+                <button id="dont-play-btn">Not This Time!!</button>
+            </div>
+        </div>
+    </div>
+</div>
+    
+    
+  <div class="container">
+    <div class="top">
+    <div class="line"></div>
+      <div class="left-side">
+        <div class="love-text">I lovee</div>
+        <div class="sub-text">you,</div>
+        <div class="sub-text">My</div>
+        <div class="sub-text">Whore</div>
+      </div>
+
+      <div class="right-side">
+        <div class="right-aligned-text">
+            Runnin' away from where I'm from<br>
+            Never can stay with no one<br>
+            Loving you almost feels like something<br>
+            When no ones around me, you lost and found me<br>
+            I was surrounded<br>
+            ...<br>
+            With open, open, open, open arms (ooh)<br>
+            Open arms, you keep me open<br>
+            I'm so devoted<br>
+            You keep me open, open arms<br>
+            I'm so devoted to you, to you, to you<br>
+            ...<br>
+            Spent your life bein' hopeless<br>
+            Chokin' on insecurity<br>
+            I know all this is bad<br>
+            But, please, put a leash on me anyway<br>
+            Who needs self-esteem anyway?<br>
+            I hate myself to make you stay<br>
+            Push me away, I'll be right here<br>
+            ...<br>
+            With open, open, open, open arms (ooh)<br>
+            Open arms, you keep me open<br>
+            I'm so devoted<br>
+            You keep me open, open arms<br>
+            I'm so devoted to you, to you, to you<br>
+            ...<br>
+            No matter what come between us, yeah, I decided (ayy)<br>
+            I'm forever ridin' (whoa), you're forever guidin' (ayy)<br>
+            Pull up on an opp, hit his curb up, slide it (brr)<br>
+            Notice when you mad, ain't no words, just silence (ooh)<br>
+            You my favorite color, now you seein' every shade of me<br>
+            You say that I'm trippin', I hit back like, "Where you takin' me?"<br>
+            Locked in for life, on God, no replacin' me<br>
+            Consequences, repercussions, karma keep on changin' me<br>
+            For you I try, face card valid, ID<br>
+            C'est la vie, go to Paris, it ain't five-star, it ain't me<br>
+            Over-solid, keep it concrete, I'ma bet it on your whole fee<br>
+            Just don't switch sides, I could fire piece your wrist, AP<br>
+            Through the ups and downs and all the heat<br>
+            Take a turn and tell you what it be<br>
+            Backshots make you feel relief, anything, just don't you ever leave<br>
+            ...<br>
+            I guess I gotta go<br>
+            I guess it's time to go<br>
+            I gotta let you go<br>
+            (I'm so devoted)<br>
+            You keep me open<br>
+            Gotta let you go, gotta let you go<br>
+            I gotta let you go, I must<br>
+            You're the only one that's holdin' me down<br>
+            (You're the only one holdin' me down)<br>
+            ('Cause I'm the only one that's holdin' me down)
+        </div>
+      </div>
+      <div class="dashed-line"></div>
+    </div>
+    <div class="middle">
+        <div class="slide">
+            <img src="pic11.jpg" alt="Image 1">
+        </div>
+        <div class="slide slide-1">
+            <img src="pic2.png" alt="Image 2">
+        </div>
+        <div class="slide slide-2">
+            <img src="pic5.jpg" alt="Image 3">
+        </div>
+        <div class="slide slide-2">
+            <img src="pic7.jpg" alt="Image 4">
+        </div>
+        <div class="slide slide-1">
+            <img src="pic9.jpg" alt="Image 5">
+        </div>
+        <div class="slide slide-1">
+            <img src="pic3.png" alt="Image 6">
+        </div>
+        <div class="slide slide-2">
+            <img src="pic15.jpg" alt="Image 15">
+        </div>
+        <div class="slide slide-2">
+            <img src="pic10.jpg" alt="Image 7">
+        </div>
+        <div class="slide slide-1">
+            <img src="pic1.png" alt="Image 8">
+        </div>
+        <div class="slide slide-2">
+            <img src="pic13.jpg" alt="Image 13">
+        </div>
+        <div class="slide slide-2">
+            <img src="pic4.jpg" alt="Image 9">
+        </div>
+        <div class="slide slide-1">
+            <img src="pic12.jpg" alt="Image 12">
+        </div>
+        <div class="slide slide-1">
+            <img src="pic6.jpg" alt="Image 10">
+        </div>
+        <div class="slide slide-2">
+            <img src="pic8.jpg" alt="Image 11">
+        </div>
+        <div class="slide slide-2">
+            <img src="pic14.jpg" alt="Image 14">
+        </div>
+        <div class="slide slide-2">
+            <img src="pic16.jpeg" alt="Image 16">
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="line"></div>
+            <p>
+                Mmm, Hiii, Lovee???💌<br>
+                Mmhm!!<br>
+                Yeah, I made this one for you. Baby, don't flatter yourself, maybe at first. It's just to express my gratitude towards you. It sounds too formal, let's keep it love. Yeah, it's just to express my love towards you. I really wanted to make sure that you know how much I love you and appreciate your presence in my life. I don't know much about the future; apparently, AI ain't that strong yet. I don't know if we'll drift away someday or just get closer, but for what I know, I really enjoy our present for whatever we are. Nothing different to tell, just the stuff that I keep telling you that I really miss you sometimes, more when I am stressed. You slowly did creep into my life, huh, dumbass, but damn, is it something now? You're really slow, though. This took you what, 7+ years? Haha, dumb, but also gotta acknowledge that you're really giving me my best bond lately.<br>
+                Let me get a bit creepy. You really do things to me. I never knew words held that power, but those things are so intense. You really make me crave your presence. I never felt that for no one; this is so unique, so strong, so enticing. I so wanna live in this shade forever. You literally got me infatuated with you. The dopamine peaks that you give, the arousals, the overall emotional high, Oh God!! I really explored these emotions with you only. I so just wanna hold you at times. Not our chat always but even the thoughts of you make me feel all of this.<br>
+                You know how much am I into you now? Mmm, no I'd say!! I really like when you take charge of talking; it's so attractive, you should know it, you know. You know I have only seen you wearing that blue and green top, like twice for the times we met, and whenever you appear in the thought, those are the same tops that you wear. I found it when I was going through the photo uploading process.<br>
+                Lalalaaaa!!!! Ignore!<br>
+                Huh, yeah, was waiting for this, I so want you, you know. I really, really love you; I don't know if it's conveyed correctly all the time or not. I want you to keep communicating with me the way you do, like any stuff that bothers you and all, and I promise to help us through that. Uh, yeah, 'us', you really made this word a special one for me, like so special, I really love us, you know, it feels so good like all the time, not the most emotional guy out there but with you, it's just so different. You really make me feel good and all in comfort, like I said 'warm'. Those random 'Miss you's and the random 'I love you's, they feel so good. You, in whole, feel so right for me, you know. The good morning texts too, how can I forget 'em. 
+                Huh! Whatever, you are a whore after all, like a whore with a hard R, WHORE, yeah, it's 'My Whore', that's a different thing but still, I like claiming you🤭. I'll always want to meet you, you know; you really need to arrange a house party, maybe just for us, all fun or maybe just a sleep-over, it would all be so fun. Maybe I should stop fucking with your brain here, also I don't know if the text fits the right duration of the song, but whatever, you know. I don't think I still, with this text, was able to summarize with this text what I intended to, but you'll know it all eventually.<br>
+                So mmm,<br>
+                Byeee for now. I loveee you, more like iloveeeyouu💌, and I do miss you a lot, and you are one of my favorite thoughts to think about for a long while. I am really fond of you, lowkey obsessed. I'll get you your coffee don't worry.🙂<br> 
+                So yeah byeee!! Stay around, and yeah, keep them thangs bussin' girl😩(🤭)!!!!!!!!!!!!!!!!!!!!<br>
+                Yours Only,<br>
+                Me!!🙂<br>
+                🫰
+            </p>
+        <div class="line"></div>
+  </div>
+  <audio id="bg-music" src="open.mp3" loop></audio>
+  <source src="open.mp3" type="audio/mpeg">
+  <source src="open.mp3" type="audio/ogg">
+  <!-- Add more source elements for other formats if needed -->
+  Your browser does not support the audio element.
+  </audio>
+
+  <script>
+    const playBtn = document.getElementById('play-btn');
+        playBtn.addEventListener('click', function() {
+            // Hide the prompt-container
+            const promptContainer = document.querySelector('.prompt-container');
+            promptContainer.style.display = 'none';
+        });
+        const playBtn2 = document.getElementById('dont-play-btn');
+        playBtn2.addEventListener('click', function() {
+            // Hide the prompt-container
+            const promptContainer = document.querySelector('.prompt-container');
+            promptContainer.style.display = 'none';
+        });
+    // Function to play the audio
+    function playAudio() {
+        const bgMusic = document.getElementById('bg-music');
+        bgMusic.play();
+    }
+
+    // Function to hide the prompt
+    function hidePrompt() {
+        const prompt = document.getElementById('prompt');
+        prompt.style.display = 'none';
+    }
+
+    // Show the prompt after 1 second (1000 milliseconds)
+    setTimeout(function() {
+        const prompt = document.getElementById('prompt');
+        prompt.style.display = 'flex';
+
+        // Add click event listener to the "Play Music" button
+        const playBtn = document.getElementById('play-btn');
+        playBtn.addEventListener('click', function() {
+            // Hide the prompt
+            hidePrompt();
+
+            // Start playing the audio
+            playAudio();
+        });
+
+        // Add click event listener to the "Don't Play" button
+        const dontPlayBtn = document.getElementById('dont-play-btn');
+        dontPlayBtn.addEventListener('click', function() {
+            // Hide the prompt
+            hidePrompt();
+        });
+    }, 500); // Reduce the timeout duration to 1000 milliseconds (1 second)
+
+    // JavaScript for the photo slideshow
+    // ... (your existing slideshow JavaScript code)
+
+
+    // JavaScript for the photo slideshow
+    const slides = document.querySelectorAll(".slide");
+    let currentSlide = 0;
+
+    // Function to show the current slide and hide the rest
+    function showSlide() {
+        slides.forEach((slide, index) => {
+            if (index === currentSlide) {
+                slide.style.display = "block";
+            } else {
+                slide.style.display = "none";
+            }
+        });
+    }
+
+    // Function to move to the next slide
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide();
+    }
+
+    // Set an interval to automatically change slides every 3 seconds
+    setInterval(nextSlide, 3000);
+
+    // Show the first slide initially
+    showSlide();
+</script>
+</body>
+</html>
